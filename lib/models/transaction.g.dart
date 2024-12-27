@@ -20,7 +20,7 @@ class TransactionAdapter extends TypeAdapter<Transaction> {
       name: fields[0] as String?,
       date: fields[1] as String?,
       isExpense: fields[2] as bool?,
-      isIncome: fields[3] as bool?,
+      balance: fields[3] as int?,
       amount: fields[4] as double?,
     );
   }
@@ -36,7 +36,7 @@ class TransactionAdapter extends TypeAdapter<Transaction> {
       ..writeByte(2)
       ..write(obj.isExpense)
       ..writeByte(3)
-      ..write(obj.isIncome)
+      ..write(obj.balance)
       ..writeByte(4)
       ..write(obj.amount);
   }

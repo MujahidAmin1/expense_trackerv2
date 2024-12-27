@@ -12,9 +12,9 @@ class Transaction extends HiveObject{
   @HiveField(2)
   bool? isExpense;
   @HiveField(3)
-  bool? isIncome;
+  int?  balance;
   @HiveField(4)
   double? amount;
 
-  Transaction({required this.name, required this.date, this.isExpense, this.isIncome, required this.amount});
+  Transaction({required this.name, required this.date, this.isExpense, this.balance, required this.amount});
 }
