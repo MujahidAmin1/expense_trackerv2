@@ -1,5 +1,6 @@
 import 'package:expense_trackerv2/models/transaction.dart';
-import 'package:expense_trackerv2/providers/transactionProvider.dart';
+import 'package:expense_trackerv2/providers/button_control.dart';
+import 'package:expense_trackerv2/providers/transaction_provider.dart';
 import 'package:expense_trackerv2/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
@@ -14,7 +15,11 @@ void main() async{
       providers: [
         ChangeNotifierProvider(
           create: (_) => TransactionProvider(),
-    ),],
+    ),
+    ChangeNotifierProvider(
+      create: (_) => ButtonControl(),
+      )
+    ],
       child: const MaterialApp(
       home: HomeScreen(),
       ),

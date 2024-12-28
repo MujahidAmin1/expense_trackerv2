@@ -8,7 +8,7 @@ class CreditCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Color.fromARGB(255, 75, 75, 75),
+      color: Color.fromRGBO(41, 44, 49, 1),
       elevation: 3,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(25)
@@ -18,7 +18,7 @@ class CreditCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(40)
         ),
         height: 200,
-        child: const Padding(
+        child: Padding(
           padding: EdgeInsets.all(30.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,8 +29,11 @@ class CreditCard extends StatelessWidget {
               Row(
                 children: [
                   Text("4034 3344 2445 2234", style: TextStyle(fontSize: 24, color: Colors.white),),
-                  SizedBox(width: 90),
-                  Icon(Icons.abc_outlined),
+                  const SizedBox(width: 90),
+                  SizedBox(
+                    height: 26,
+                    child: Image.asset('assets/mcard.png'),
+                    ),
                 ],
               ),
             ],
