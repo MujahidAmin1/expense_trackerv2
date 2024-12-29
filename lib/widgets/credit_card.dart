@@ -6,7 +6,7 @@ class CreditCard extends StatelessWidget {
   CreditCard({super.key, this.transaction});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Card(
       color: Color.fromRGBO(41, 44, 49, 1),
       elevation: 3,
