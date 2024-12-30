@@ -1,5 +1,6 @@
 import 'package:expense_trackerv2/models/transaction.dart';
 import 'package:expense_trackerv2/providers/button_control.dart';
+import 'package:expense_trackerv2/providers/navbar_provider.dart';
 import 'package:expense_trackerv2/providers/transaction_provider.dart';
 import 'package:expense_trackerv2/screens/home.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,8 @@ void main() async{
     ),
     ChangeNotifierProvider(
       create: (_) => ButtonControl(),
+      ),
+      ChangeNotifierProvider(create: (_) => NavBarProvider(),
       )
     ],
       child: const MaterialApp(

@@ -1,6 +1,11 @@
+import 'package:expense_trackerv2/providers/navbar_provider.dart';
 import 'package:expense_trackerv2/widgets/credit_card.dart';
 import 'package:expense_trackerv2/widgets/segment_tiles.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'first_screen.dart';
+import 'statistics.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,62 +15,34 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<Widget> navbarItems = <Widget>[
+    FirstScreen(),
+    Statistics(),
+  ];
   @override
   Widget build(BuildContext context) {
+    var navbar_data = Provider.of<NavBarProvider>(context);
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 10),
-                const Row(
-                  children: [
-                    SizedBox(width: 10),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Good Morning",
-                          style: TextStyle(fontSize: 15, color: Colors.grey),
-                        ),
-                        SizedBox(height: 4),
-                        Text(
-                          'Mujahid Amin',
-                          style: TextStyle(
-                              fontSize: 25, fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    SizedBox(width: 220),
-                    Icon(Icons.notifications),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                CreditCard(),
-                const SizedBox(height: 30),
-                const Text(
-                  " Transactions",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-              SegmentTiles(icon: Icons.upgrade_sharp),
-              ],
-            ),
+      body: navbarItems[navbar_data.selectedIndex],
+      floatingActionButton: FloatingActionButton(
+        
+        onPressed: (){}
+        ),
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        notchMargin: 6,
+        child: BottomNavigationBar(
+          currentIndex: navbar_data.selectedIndex,
+          selectedItemColor: Colors.grey,
+          onTap: (value){
+            navbar_data.onTapped;
+          },
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.stars_outlined), label: 'Stats'),
+          ],
           ),
-        ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (value){
-          
-        },
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add'),
-          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Profile'),
-        ]
-        ),
     );
   }
 }
