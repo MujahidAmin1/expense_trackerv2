@@ -8,7 +8,7 @@ class SegmentTiles extends StatelessWidget {
   IconData? icon;
   double? width;
   Transaction? transaction;
-  SegmentTiles({super.key, this.transaction, required this.icon, this.width = double.infinity});
+  SegmentTiles({super.key, this.transaction, this.icon, this.width = double.infinity});
 
   @override
   Widget build(BuildContext context) {

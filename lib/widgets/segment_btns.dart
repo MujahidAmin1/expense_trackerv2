@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 class SegmentBtn extends StatelessWidget {
-  IconData icon;
+  IconData? icon;
   String? topTxt;
   String? bottomTxt;
   SegmentBtn(
       {super.key,
-      required this.icon,
-      required this.topTxt,
-      required this.bottomTxt});
+      this.icon,
+      this.topTxt,
+      this.bottomTxt,
+      });
 
   @override
   Widget build(BuildContext context) {
