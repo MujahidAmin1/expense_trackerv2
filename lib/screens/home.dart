@@ -1,4 +1,5 @@
 import 'package:expense_trackerv2/providers/navbar_provider.dart';
+import 'package:expense_trackerv2/screens/add_transaction.dart';
 import 'package:expense_trackerv2/widgets/credit_card.dart';
 import 'package:expense_trackerv2/widgets/segment_tiles.dart';
 import 'package:flutter/material.dart';
@@ -15,33 +16,43 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Widget> navbarItems = <Widget>[
-    FirstScreen(),
-    Statistics(),
+  List<Widget> navbarItems = [
+    const FirstScreen(),
+    const Statistics(),
   ];
   @override
   Widget build(BuildContext context) {
-    var navbar_data = Provider.of<NavBarProvider>(context);
+    var navBarProvider = Provider.of<NavBarProvider>(context);
     return Scaffold(
-      body: navbarItems[navbar_data.selectedIndex],
+      body: navbarItems[navBarProvider.selectedIndex],
       floatingActionButton: FloatingActionButton(
-        
-        onPressed: (){}
-        ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return AddTransaction();
+              },
+            ),
+          );
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         notchMargin: 6,
         child: BottomNavigationBar(
-          currentIndex: navbar_data.selectedIndex,
-          selectedItemColor: Colors.grey,
-          onTap: (value){
-            navbar_data.onTapped;
+          currentIndex: navBarProvider.selectedIndex,
+          selectedItemColor: Colors.black,
+          onTap: (value) {
+            navBarProvider.changeIndex(value);
           },
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.stars_outlined), label: 'Stats'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.stars_outlined), label: 'Stats'),
           ],
-          ),
+        ),
       ),
     );
   }

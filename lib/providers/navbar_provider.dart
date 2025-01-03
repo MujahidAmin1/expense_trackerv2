@@ -6,7 +6,7 @@ import '../screens/first_screen.dart';
 class NavBarProvider extends ChangeNotifier {
   int _selected_index = 0;
   int get selectedIndex => _selected_index;
-  void onTapped(int index){
+  void changeIndex(int index){
     _selected_index = index;
     notifyListeners();
   }
