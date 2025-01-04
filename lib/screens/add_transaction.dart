@@ -1,4 +1,7 @@
+import 'package:expense_trackerv2/models/transaction.dart';
+import 'package:expense_trackerv2/providers/transaction_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AddTransaction extends StatefulWidget {
   const AddTransaction({super.key});
@@ -7,18 +10,32 @@ class AddTransaction extends StatefulWidget {
   State<AddTransaction> createState() => _AddTransactionState();
 }
 
+late TextEditingController billerController;
+late TextEditingController billerDetailController;
+late TextEditingController amountController;
+
 class _AddTransactionState extends State<AddTransaction> {
   final List<String> choices = ['Expense', 'Income'];
   String _selectedChoice = 'Expense';
   @override
+  void initState() {
+    billerController = TextEditingController();
+    billerDetailController = TextEditingController();
+    amountController = TextEditingController();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    Transaction transaction;
+    var transactionProvider = Provider.of<TransactionProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Add Transaction"),
         elevation: 0,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(
           children: [
             const SizedBox(
@@ -87,24 +104,46 @@ class _AddTransactionState extends State<AddTransaction> {
                 ),
               ),
             ),
+            const SizedBox(height: 25),
             TextField(
-            decoration: InputDecoration(
-              hintText: 'Biller',
-              border: OutlineInputBorder()
+              controller: billerController,
+              decoration: InputDecoration(
+                  hintText: 'Biller',
+                  border: OutlineInputBorder(),
+                  ),
             ),
-          ),
-           TextField(
-            decoration: InputDecoration(
-              hintText: 'Bill details',
-              border: OutlineInputBorder(),
+            const SizedBox(height: 25),
+            TextField(
+              controller: billerDetailController,
+              decoration: InputDecoration(
+                hintText: 'Bill details',
+                border: OutlineInputBorder(),
+              ),
             ),
-          ),
-          TextField(
-            decoration: InputDecoration(
-              hintText: 'Amount',
-              border: OutlineInputBorder()
+            const SizedBox(height: 25),
+            TextField(
+              controller: amountController,
+              decoration: InputDecoration(
+                  hintText: 'Amount', border: OutlineInputBorder()),
             ),
-          ),  
+            const SizedBox(height: 25),
+            ElevatedButton(
+              onPressed: (){
+                Transaction _transaction = Transaction(
+                  biller: billerController.text,
+                  billerDetail: billerDetailController.text,
+                  isExpense: switch (_selectedChoice) {
+                    'Expense' => true,
+                      _ => false,
+                  },
+                  date: DateTime.now(),
+                  amount: amountController.text,
+                  );
+                  transactionProvider.addTransact(_transaction);
+                  Navigator.pop(context);
+              }, 
+              child: const Text('Add Transaction'),
+              )
           ],
         ),
       ),

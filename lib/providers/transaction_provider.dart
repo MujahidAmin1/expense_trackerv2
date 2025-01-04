@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 
 class TransactionProvider extends ChangeNotifier{
+  Transaction? transaction;
   late Box<Transaction> _transactionBox;
   List<Transaction> _transactionList = [];
   List<Transaction> get transactionList => _transactionList;
-
+  
+   TransactionProvider() {
+    initializeDB();
+  }
   Future<void> initializeDB()async{
     await Hive.initFlutter();
    _transactionBox = await Hive.openBox('transactionBox');
@@ -28,4 +32,7 @@ class TransactionProvider extends ChangeNotifier{
     _transactionList.removeAt(index);
     notifyListeners();
   }
+
+ late List<Transaction> expenseList = _transactionList.where((element) => element.isExpense!).toList();
+ late List<Transaction> incomeList = _transactionList.where((element) => !element.isExpense!).toList();
 }

@@ -6,15 +6,17 @@ part 'transaction.g.dart';
 @HiveType(typeId: 0)
 class Transaction extends HiveObject{
   @HiveField(0)
-  String? name;
+  String? biller;
   @HiveField(1)
-  String? date;
-  @HiveField(2)
-  bool? isExpense;
+  String? billerDetail;
+ @HiveField(2)
+  DateTime? date;
   @HiveField(3)
-  int?  balance;
+  bool? isExpense;
   @HiveField(4)
-  double? amount;
+  int?  balance;
+  @HiveField(5)
+  String? amount;
 
-  Transaction({required this.name, required this.date, this.isExpense, this.balance, required this.amount});
+  Transaction({required this.biller, required this.billerDetail, required this.date, this.isExpense, this.balance, required this.amount});
 }
