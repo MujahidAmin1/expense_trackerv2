@@ -1,4 +1,6 @@
+import 'package:expense_trackerv2/providers/button_control.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SegmentBtn extends StatelessWidget {
   IconData? icon;
@@ -13,14 +15,23 @@ class SegmentBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var sbtnController = Provider.of<ButtonControl>(context);
     return Container(
       height: 80,
       child: Row(
         children: [
           const SizedBox(width: 15),
           CircleAvatar(
+            backgroundColor: bottomTxt == "Expense"
+                            ?Color(0xFFDCFFEB)
+                            : Color(0xFFfdf0df),
             radius: 24,
-            child: Icon(icon, color: Colors.green,),
+            child: Icon(
+              icon, 
+              color: bottomTxt == "Expense" 
+              ? Colors.green
+              : Color(0xFFff940e)
+              ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),

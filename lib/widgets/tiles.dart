@@ -18,7 +18,7 @@ class CustomTiles extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
-      color: const Color.fromRGBO(33, 150, 243, 1),
+      color: const Color(0xFF7F00FF),
       child: ListTile(
         leading: CircleAvatar(
           radius: 7,
@@ -26,11 +26,16 @@ class CustomTiles extends StatelessWidget {
         ),
         title: Column(
           children: [
-            Text(transaction?.biller ?? "Unknown Biller"),
+            Text(
+              transaction?.biller ?? "Unknown Biller",
+              style: const TextStyle(color: Colors.white),
+              ),
             const SizedBox(height: 30),
             Text(transaction?.date != null
                 ? DateFormat('dd/MM/yyyy').format(transaction!.date!)
-                : "No Date"),
+                : "No Date",
+                style: const TextStyle(color: Colors.white),
+                ),
           ],
         ),
         trailing: Text("\$${transaction?.amount ?? "0.00"}"),

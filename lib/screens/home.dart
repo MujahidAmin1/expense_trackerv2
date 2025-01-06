@@ -26,6 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: navbarItems[navBarProvider.selectedIndex],
       floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color(0xFF7F00FF),
+        child: const Icon(Icons.add),
         onPressed: () {
           Navigator.push(
             context,

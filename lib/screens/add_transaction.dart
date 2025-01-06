@@ -31,6 +31,7 @@ class _AddTransactionState extends State<AddTransaction> {
     var transactionProvider = Provider.of<TransactionProvider>(context);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color(0xFF7F00FF),
         title: const Text("Add Transaction"),
         elevation: 0,
       ),
@@ -43,10 +44,11 @@ class _AddTransactionState extends State<AddTransaction> {
             ),
             Center(
               child: Container(
-                padding: EdgeInsets.all(5), // Padding around the container
+                height: 49,
+                padding: const EdgeInsets.symmetric(horizontal: 4),
                 decoration: BoxDecoration(
-                  color: Colors.blueAccent, // Solid background color
-                  borderRadius: BorderRadius.circular(22),
+                  color: const Color(0xFF00FFFF), // Solid background color
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 child: Wrap(
                   alignment: WrapAlignment.start,
@@ -71,10 +73,11 @@ class _AddTransactionState extends State<AddTransaction> {
                       padding: const EdgeInsets.symmetric(
                           vertical: 12.0, horizontal: 20.0), // Custom padding
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                       backgroundColor: Colors.white, // Default background color
-                      selectedColor: Colors.greenAccent, // Color when selected
+                      selectedColor:
+                          const Color(0xFF7F00FF), // Color when selected
                     ),
                     ChoiceChip(
                       label: Text(
@@ -95,10 +98,11 @@ class _AddTransactionState extends State<AddTransaction> {
                       padding: EdgeInsets.symmetric(
                           vertical: 12.0, horizontal: 20.0), // Custom padding
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                       backgroundColor: Colors.white, // Default background color
-                      selectedColor: Colors.orangeAccent, // Color when selected
+                      selectedColor:
+                          const Color(0xFF7F00FF), // Color when selected
                     ),
                   ],
                 ),
@@ -108,9 +112,9 @@ class _AddTransactionState extends State<AddTransaction> {
             TextField(
               controller: billerController,
               decoration: InputDecoration(
-                  hintText: 'Biller',
-                  border: OutlineInputBorder(),
-                  ),
+                hintText: 'Biller',
+                border: OutlineInputBorder(),
+              ),
             ),
             const SizedBox(height: 25),
             TextField(
@@ -128,22 +132,36 @@ class _AddTransactionState extends State<AddTransaction> {
             ),
             const SizedBox(height: 25),
             ElevatedButton(
-              onPressed: (){
+              style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color(0xFF7F00FF))),
+              onPressed: () {
                 Transaction _transaction = Transaction(
                   biller: billerController.text,
                   billerDetail: billerDetailController.text,
                   isExpense: switch (_selectedChoice) {
                     'Expense' => true,
-                      _ => false,
+                    'Income' => false,
+                    _ => null,
                   },
                   date: DateTime.now(),
                   amount: amountController.text,
-                  );
+                );
+                if (billerController.text.isNotEmpty &&
+                    billerDetailController.text.isNotEmpty &&
+                    amountController.text.isNotEmpty) {
                   transactionProvider.addTransact(_transaction);
                   Navigator.pop(context);
-              }, 
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text("Must Fill all empty spaces"),
+                    ),
+                  );
+                }
+              },
               child: const Text('Add Transaction'),
-              )
+            )
           ],
         ),
       ),

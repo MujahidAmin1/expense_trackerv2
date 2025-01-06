@@ -8,9 +8,10 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  
+  Hive.registerAdapter(TransactionAdapter());
   final transactionProvider = TransactionProvider();
   await transactionProvider.initializeDB();
-  Hive.registerAdapter(TransactionAdapter());
   runApp(
     MultiProvider(
       providers: [

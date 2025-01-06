@@ -29,7 +29,7 @@ class SegmentTiles extends StatelessWidget {
               ),
               elevation: isExpenseSelected ? 2 : 0,
               color: isExpenseSelected 
-                      ? Colors.grey
+                      ? Color(0xFFDCFFEB)
                       : Colors.white,
               child: SegmentBtn(
                 icon: Icons.arrow_upward, 
@@ -54,7 +54,7 @@ class SegmentTiles extends StatelessWidget {
               elevation: isExpenseSelected ? 0 : 2,
               color: isExpenseSelected 
                       ? Colors.white
-                      : Colors.grey,
+                      : Color(0xFFDCFFEB),
               child: SegmentBtn(
                 icon: Icons.arrow_downward, 
                 topTxt: '80%', 
