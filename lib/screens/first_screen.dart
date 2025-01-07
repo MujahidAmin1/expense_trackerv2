@@ -1,4 +1,5 @@
 import 'package:expense_trackerv2/models/transaction.dart';
+import 'package:expense_trackerv2/providers/button_control.dart';
 import 'package:expense_trackerv2/widgets/credit_card.dart';
 import 'package:expense_trackerv2/widgets/segment_tiles.dart';
 import 'package:expense_trackerv2/widgets/tiles.dart';
@@ -18,6 +19,7 @@ class _FirstScreenState extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
     var transactionProvider = Provider.of<TransactionProvider>(context);
+    var segmentbtnController = Provider.of<ButtonControl>(context);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -61,9 +63,13 @@ class _FirstScreenState extends State<FirstScreen> {
                 child: ListView.builder(
                   itemCount: transactionProvider.transactionList.length,
                   itemBuilder: (context, index) {
+                    Transaction? transaction = segmentbtnController.isExpense! 
+                    ? transactionProvider.sortedTransactions.where((transact) => transact.isExpense! == true).toList()[index]
+                    : transactionProvider.sortedTransactions.where((transact) => transact.isExpense! == false).toList()[index];
                     return CustomTiles(
-                      transaction: transactionProvider.transactionList[index],
+                      transaction: transaction,
                       icon: Icons.abc,
+                    
                     );
                   },
                 ),

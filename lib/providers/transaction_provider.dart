@@ -7,6 +7,7 @@ class TransactionProvider extends ChangeNotifier{
   late Box<Transaction> _transactionBox;
   List<Transaction> _transactionList = [];
   List<Transaction> get transactionList => _transactionList;
+  List<Transaction> sortedTransactions = [];
   
    TransactionProvider() {
     initializeDB();
@@ -15,6 +16,8 @@ class TransactionProvider extends ChangeNotifier{
     await Hive.initFlutter();
    _transactionBox = await Hive.openBox('transactionBox');
    _transactionList = _transactionBox.values.toList();
+   sortedTransactions.addAll(transactionList);
+   
    notifyListeners();
   }
   Future<void> addTransact(Transaction transaction)async{
@@ -32,7 +35,8 @@ class TransactionProvider extends ChangeNotifier{
     _transactionList.removeAt(index);
     notifyListeners();
   }
-
- late List<Transaction> expenseList = _transactionList.where((element) => element.isExpense!).toList();
- late List<Transaction> incomeList = _transactionList.where((element) => !element.isExpense!).toList();
+ void sort(List<Transaction> sort){
+  sortedTransactions = sort;
+  notifyListeners();
+ }
 }

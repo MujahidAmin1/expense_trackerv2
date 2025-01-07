@@ -17,7 +17,7 @@ class CreditCard extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(40)
         ),
-        height: 200,
+        height: 213,
         child: Padding(
           padding: EdgeInsets.all(30.0),
           child: Column(
@@ -29,7 +29,7 @@ class CreditCard extends StatelessWidget {
               Row(
                 children: [
                   Text("4034 3344 2445 2234", style: TextStyle(fontSize: 24, color: Colors.white),),
-                  const SizedBox(width: 90),
+                  const SizedBox(width: 80),
                   SizedBox(
                     height: 26,
                     child: Image.asset('assets/mcard.png'),

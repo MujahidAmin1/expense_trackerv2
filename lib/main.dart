@@ -24,7 +24,10 @@ void main() async{
       ChangeNotifierProvider(create: (_) => NavBarProvider(),
       )
     ],
-      child: const MaterialApp(
+      child: MaterialApp(
+      theme: ThemeData(
+        useMaterial3: true
+      ),
       home: HomeScreen(),
       ),
     ));
