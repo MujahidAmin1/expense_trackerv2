@@ -8,7 +8,7 @@ class CreditCard extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return Card(
-      color: Color.fromRGBO(41, 44, 49, 1),
+      color: const Color(0xFF291e60),
       elevation: 3,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(25)
@@ -40,6 +40,6 @@ class CreditCard extends StatelessWidget {
           ),
         ),
       ),
-    );
+    );;
   }
 }

@@ -23,20 +23,29 @@ class TransactionProvider extends ChangeNotifier{
   Future<void> addTransact(Transaction transaction)async{
     await _transactionBox.add(transaction);
     _transactionList.add(transaction);
+    updateSortedTransactions();
     notifyListeners();
   }
   Future<void> editTransact(int index, Transaction transaction)async{
     await _transactionBox.putAt(index, transaction);
     _transactionList[index] = transaction;
+    updateSortedTransactions();
     notifyListeners();
   }
   Future<void> deleteTransact(int index)async{
     await _transactionBox.deleteAt(index);
     _transactionList.removeAt(index);
+    updateSortedTransactions();
+    
     notifyListeners();
   }
  void sort(List<Transaction> sort){
   sortedTransactions = sort;
   notifyListeners();
  }
+ // Helper method to update sortedTransactions based on _transactionList
+  void updateSortedTransactions() {
+    sortedTransactions = List.from(_transactionList); // Update sorted list
+    notifyListeners();
+  }
 }

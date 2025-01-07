@@ -27,11 +27,11 @@ class _AddTransactionState extends State<AddTransaction> {
 
   @override
   Widget build(BuildContext context) {
-    Transaction transaction;
     var transactionProvider = Provider.of<TransactionProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF7F00FF),
+        foregroundColor: const Color(0xFF00FFFF),
         title: const Text("Add Transaction"),
         elevation: 0,
       ),
@@ -44,8 +44,7 @@ class _AddTransactionState extends State<AddTransaction> {
             ),
             Center(
               child: Container(
-                height: 49,
-                padding: const EdgeInsets.symmetric(horizontal: 4),
+                padding: const EdgeInsets.all(3),
                 decoration: BoxDecoration(
                   color: const Color(0xFF00FFFF), // Solid background color
                   borderRadius: BorderRadius.circular(8),
@@ -60,7 +59,7 @@ class _AddTransactionState extends State<AddTransaction> {
                         style: TextStyle(
                             fontSize: 18,
                             color: _selectedChoice == 'Expense'
-                                ? Colors.white
+                                ? const Color(0xFF00FFFF)
                                 : Colors
                                     .black), // Change text color based on selection
                       ),
@@ -85,7 +84,7 @@ class _AddTransactionState extends State<AddTransaction> {
                         style: TextStyle(
                             fontSize: 18,
                             color: _selectedChoice == 'Income'
-                                ? Colors.white
+                                ? const Color(0xFF00FFFF)
                                 : Colors
                                     .black), // Change text color based on selection
                       ),
@@ -112,23 +111,25 @@ class _AddTransactionState extends State<AddTransaction> {
             TextField(
               controller: billerController,
               decoration: InputDecoration(
-                hintText: 'Biller',
-                border: OutlineInputBorder(),
+                hintText: _selectedChoice == "Expense" ? 'Biller' : "Creditor",
+                border: const OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 25),
             TextField(
               controller: billerDetailController,
               decoration: InputDecoration(
-                hintText: 'Bill details',
-                border: OutlineInputBorder(),
+                hintText: _selectedChoice == "Expense" ? 'Bill details' : 'Credit Details',
+                border: const OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 25),
             TextField(
               controller: amountController,
-              decoration: InputDecoration(
-                  hintText: 'Amount', border: OutlineInputBorder()),
+              decoration: const InputDecoration(
+                  hintText: 'Amount', 
+                  border: OutlineInputBorder(),
+                  ),
             ),
             const SizedBox(height: 25),
             ElevatedButton(
@@ -160,7 +161,12 @@ class _AddTransactionState extends State<AddTransaction> {
                   );
                 }
               },
-              child: const Text('Add Transaction'),
+              child: const Text(
+                'Add Transaction',
+                style: TextStyle(
+                  color: Color(0xFF00FFFF),
+                ),
+                ),
             )
           ],
         ),

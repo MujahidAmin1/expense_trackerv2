@@ -26,7 +26,11 @@ void main() async{
     ],
       child: MaterialApp(
       theme: ThemeData(
-        useMaterial3: true
+        scaffoldBackgroundColor: Colors.white,
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF291e60)
+          )
       ),
       home: HomeScreen(),
       ),

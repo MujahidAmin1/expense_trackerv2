@@ -17,7 +17,7 @@ class SegmentBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     var sbtnController = Provider.of<ButtonControl>(context);
     return Container(
-      height: 80,
+      height: 70,
       child: Row(
         children: [
           const SizedBox(width: 15),
@@ -40,14 +40,14 @@ class SegmentBtn extends StatelessWidget {
                 Text(
                   topTxt!,
                   style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 13,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
                   bottomTxt!,
                   style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 13,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

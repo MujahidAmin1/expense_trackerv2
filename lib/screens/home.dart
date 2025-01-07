@@ -2,8 +2,6 @@ import 'package:expense_trackerv2/providers/navbar_provider.dart';
 import 'package:expense_trackerv2/screens/add_card.dart';
 import 'package:expense_trackerv2/screens/add_transaction.dart';
 import 'package:expense_trackerv2/screens/profile.dart';
-import 'package:expense_trackerv2/widgets/credit_card.dart';
-import 'package:expense_trackerv2/widgets/segment_tiles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -53,14 +51,14 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             IconButton(
-              icon: Icon(Icons.home),
+              icon: const Icon(Icons.home),
               color: navBarProvider.selectedIndex == 0
                   ? Theme.of(context).colorScheme.primary
                   : Colors.grey,
               onPressed: () => navBarProvider.changeIndex(0),
             ),
             IconButton(
-              icon: Icon(Icons.search),
+              icon: const Icon(Icons.bar_chart),
               color: navBarProvider.selectedIndex == 1
                   ? Theme.of(context).colorScheme.primary
                   : Colors.grey,
@@ -68,14 +66,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const SizedBox(width: 40), // Space for FAB cutout
             IconButton(
-              icon: Icon(Icons.notifications),
+              icon: const Icon(Icons.credit_card),
               color: navBarProvider.selectedIndex == 2
                   ? Theme.of(context).colorScheme.primary
                   : Colors.grey,
               onPressed: () => navBarProvider.changeIndex(2),
             ),
             IconButton(
-              icon: Icon(Icons.person),
+              icon: const Icon(Icons.person),
               color: navBarProvider.selectedIndex == 3
                   ? Theme.of(context).colorScheme.primary
                   : Colors.grey,
