@@ -11,20 +11,29 @@ class TransactionAdapter extends TypeAdapter<Transaction> {
   final int typeId = 0;
 
   @override
-  Transaction read(BinaryReader reader) {
-    final numOfFields = reader.readByte();
-    final fields = <int, dynamic>{
-      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
-    };
-    return Transaction(
-      biller: fields[0] as String?,
-      billerDetail: fields[1] as String?,
-      date: fields[2] as DateTime?,
-      isExpense: fields[3] as bool?,
-      balance: fields[4] as int?,
-      amount: fields[5] as String?,
-    );
+  @override
+Transaction read(BinaryReader reader) {
+  final numOfFields = reader.readByte();
+  final fields = <int, dynamic>{
+    for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+  };
+  return Transaction(
+    biller: fields[0] as String?,
+    billerDetail: fields[1] as String?,
+    date: fields[2] as DateTime?,
+    isExpense: fields[3] as bool?,
+    amount: _parseDouble(fields[4]),
+  );
+}
+
+double? _parseDouble(dynamic value) {
+  if (value is String) {
+    return double.tryParse(value);  // Safely parse string to double if it's a String
+  } else if (value is double) {
+    return value;  // Return as-is if it's already a double
   }
+  return null;  // Return null if the value is neither String nor double
+}
 
   @override
   void write(BinaryWriter writer, Transaction obj) {
@@ -39,8 +48,6 @@ class TransactionAdapter extends TypeAdapter<Transaction> {
       ..writeByte(3)
       ..write(obj.isExpense)
       ..writeByte(4)
-      ..write(obj.balance)
-      ..writeByte(5)
       ..write(obj.amount);
   }
 

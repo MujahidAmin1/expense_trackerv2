@@ -27,7 +27,7 @@ class SegmentTiles extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),
-              elevation: isExpenseSelected ? 2 : 0,
+              elevation: isExpenseSelected ? 1 : 0,
               color: isExpenseSelected 
                       ? Color(0xFFDCFFEB)
                       : Colors.white,
@@ -51,7 +51,7 @@ class SegmentTiles extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),
-              elevation: isExpenseSelected ? 0 : 2,
+              elevation: isExpenseSelected ? 0 : 1,
               color: isExpenseSelected 
                       ? Colors.white
                       : Color(0xFFDCFFEB),

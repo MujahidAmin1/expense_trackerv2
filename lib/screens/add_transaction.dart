@@ -17,12 +17,17 @@ late TextEditingController amountController;
 class _AddTransactionState extends State<AddTransaction> {
   final List<String> choices = ['Expense', 'Income'];
   String _selectedChoice = 'Expense';
+  double? result;
+
   @override
   void initState() {
     billerController = TextEditingController();
     billerDetailController = TextEditingController();
     amountController = TextEditingController();
     super.initState();
+  }
+  double? convertToDouble(String amountText) {
+    return double.tryParse(amountText);
   }
 
   @override
@@ -46,12 +51,12 @@ class _AddTransactionState extends State<AddTransaction> {
               child: Container(
                 padding: const EdgeInsets.all(3),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF00FFFF), // Solid background color
+                  color: const Color(0xFF00FFFF),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Wrap(
                   alignment: WrapAlignment.start,
-                  spacing: 8.0, // Space between chips
+                  spacing: 8.0,
                   children: [
                     ChoiceChip(
                       label: Text(
@@ -60,8 +65,7 @@ class _AddTransactionState extends State<AddTransaction> {
                             fontSize: 18,
                             color: _selectedChoice == 'Expense'
                                 ? const Color(0xFF00FFFF)
-                                : Colors
-                                    .black), // Change text color based on selection
+                                : Colors.black),
                       ),
                       selected: _selectedChoice == 'Expense',
                       onSelected: (bool selected) {
@@ -70,13 +74,12 @@ class _AddTransactionState extends State<AddTransaction> {
                         });
                       },
                       padding: const EdgeInsets.symmetric(
-                          vertical: 12.0, horizontal: 20.0), // Custom padding
+                          vertical: 12.0, horizontal: 20.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      backgroundColor: Colors.white, // Default background color
-                      selectedColor:
-                          const Color(0xFF7F00FF), // Color when selected
+                      backgroundColor: Colors.white,
+                      selectedColor: const Color(0xFF7F00FF),
                     ),
                     ChoiceChip(
                       label: Text(
@@ -85,8 +88,7 @@ class _AddTransactionState extends State<AddTransaction> {
                             fontSize: 18,
                             color: _selectedChoice == 'Income'
                                 ? const Color(0xFF00FFFF)
-                                : Colors
-                                    .black), // Change text color based on selection
+                                : Colors.black),
                       ),
                       selected: _selectedChoice == 'Income',
                       onSelected: (bool selected) {
@@ -95,13 +97,12 @@ class _AddTransactionState extends State<AddTransaction> {
                         });
                       },
                       padding: EdgeInsets.symmetric(
-                          vertical: 12.0, horizontal: 20.0), // Custom padding
+                          vertical: 12.0, horizontal: 20.0),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      backgroundColor: Colors.white, // Default background color
-                      selectedColor:
-                          const Color(0xFF7F00FF), // Color when selected
+                      backgroundColor: Colors.white,
+                      selectedColor: const Color(0xFF7F00FF),
                     ),
                   ],
                 ),
@@ -125,38 +126,38 @@ class _AddTransactionState extends State<AddTransaction> {
             ),
             const SizedBox(height: 25),
             TextField(
+              keyboardType: TextInputType.number,
               controller: amountController,
               decoration: const InputDecoration(
-                  hintText: 'Amount', 
+                  hintText: 'Amount',
                   border: OutlineInputBorder(),
-                  ),
+              ),
             ),
             const SizedBox(height: 25),
             ElevatedButton(
               style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                      const Color(0xFF7F00FF))),
+                  backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF7F00FF))),
               onPressed: () {
-                Transaction _transaction = Transaction(
-                  biller: billerController.text,
-                  billerDetail: billerDetailController.text,
-                  isExpense: switch (_selectedChoice) {
-                    'Expense' => true,
-                    'Income' => false,
-                    _ => null,
-                  },
-                  date: DateTime.now(),
-                  amount: amountController.text,
-                );
+                result = convertToDouble(amountController.text);
                 if (billerController.text.isNotEmpty &&
                     billerDetailController.text.isNotEmpty &&
-                    amountController.text.isNotEmpty) {
+                    result != null) {
+                  Transaction _transaction = Transaction(
+                    biller: billerController.text,
+                    billerDetail: billerDetailController.text,
+                    isExpense: _selectedChoice == 'Expense',
+                    date: DateTime.now(),
+                    amount: result,
+                  );
+
+                  // Add the transaction and navigate back
                   transactionProvider.addTransact(_transaction);
                   Navigator.pop(context);
                 } else {
+                  // Show an error message if any field is empty or conversion failed
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
-                      content: Text("Must Fill all empty spaces"),
+                      content: Text("Must fill all fields with valid data"),
                     ),
                   );
                 }
@@ -166,7 +167,7 @@ class _AddTransactionState extends State<AddTransaction> {
                 style: TextStyle(
                   color: Color(0xFF00FFFF),
                 ),
-                ),
+              ),
             )
           ],
         ),

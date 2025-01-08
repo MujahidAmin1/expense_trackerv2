@@ -29,8 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
       body: navbarItems[navBarProvider.selectedIndex],
       floatingActionButton: FloatingActionButton(
         shape: CircleBorder(),
-        backgroundColor: const Color(0xFF7F00FF),
-        child: const Icon(Icons.add),
+        backgroundColor: const Color(0xFF291e60),
+        child: const Icon(Icons.add, color: Colors.white,),
         onPressed: () {
           Navigator.push(
             context,

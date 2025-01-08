@@ -1,12 +1,20 @@
 import 'package:expense_trackerv2/models/transaction.dart';
+import 'package:expense_trackerv2/providers/transaction_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class CreditCard extends StatelessWidget {
+class CreditCard extends StatefulWidget {
   Transaction? transaction;
   CreditCard({super.key, this.transaction});
 
   @override
+  State<CreditCard> createState() => _CreditCardState();
+}
+
+class _CreditCardState extends State<CreditCard> {
+  @override
   Widget build(BuildContext context){
+    var transactionProvider = Provider.of<TransactionProvider>(context);
     return Card(
       color: const Color(0xFF291e60),
       elevation: 3,
@@ -23,7 +31,10 @@ class CreditCard extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("\$10000", style: TextStyle(fontSize: 30, color: Colors.white),),
+              Text(
+               "dayum",
+                style: TextStyle(fontSize: 30, color: Colors.white),
+                ),
               Text("Balance", style: TextStyle(fontSize: 17, color: Colors.white),),
              SizedBox(height: 70),
               Row(
@@ -40,6 +51,6 @@ class CreditCard extends StatelessWidget {
           ),
         ),
       ),
-    );;
+    );
   }
 }

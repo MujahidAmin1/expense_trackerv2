@@ -26,9 +26,10 @@ class TransactionTile extends StatelessWidget {
         leading: CircleAvatar(
           backgroundColor: const Color(0xFF291e60),
           radius: 25,
-          child: Icon(icon, color: Colors.white,),
+          child: Text(transaction!.biller!.substring(0,1), style: TextStyle(color: Colors.white),),
         ),
         title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               transaction?.biller ?? "Unknown Biller",
@@ -44,8 +45,8 @@ class TransactionTile extends StatelessWidget {
           ],
         ),
         trailing: Text(
-          "\$${transaction?.amount ?? "0.00"}",
-          style: const TextStyle(color: Color(0xFF291e60)),
+          "\₦${transaction?.amount ?? '0.00'}",
+          style: const TextStyle(color: Color(0xFF291e60), fontSize: 20),
           ),
       ),
     );

@@ -12,6 +12,7 @@ void main() async{
   Hive.registerAdapter(TransactionAdapter());
   final transactionProvider = TransactionProvider();
   await transactionProvider.initializeDB();
+  
   runApp(
     MultiProvider(
       providers: [
@@ -29,7 +30,7 @@ void main() async{
         scaffoldBackgroundColor: Colors.white,
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF291e60)
+          seedColor: const Color(0xFF291e60),
           )
       ),
       home: HomeScreen(),

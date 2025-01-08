@@ -14,9 +14,7 @@ class Transaction extends HiveObject{
   @HiveField(3)
   bool? isExpense;
   @HiveField(4)
-  int?  balance;
-  @HiveField(5)
-  String? amount;
+  double? amount;
 
-  Transaction({required this.biller, required this.billerDetail, required this.date, this.isExpense, this.balance, required this.amount});
+  Transaction({required this.biller, required this.billerDetail, required this.date, this.isExpense, required this.amount});
 }
