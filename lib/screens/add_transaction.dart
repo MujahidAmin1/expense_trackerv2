@@ -1,6 +1,7 @@
 import 'package:expense_trackerv2/models/transaction.dart';
 import 'package:expense_trackerv2/providers/transaction_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:pattern_formatter/numeric_formatter.dart';
 import 'package:provider/provider.dart';
 
 class AddTransaction extends StatefulWidget {
@@ -126,6 +127,9 @@ class _AddTransactionState extends State<AddTransaction> {
             ),
             const SizedBox(height: 25),
             TextField(
+              inputFormatters: [
+                ThousandsFormatter(),
+              ],
               keyboardType: TextInputType.number,
               controller: amountController,
               decoration: const InputDecoration(
@@ -138,7 +142,7 @@ class _AddTransactionState extends State<AddTransaction> {
               style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF7F00FF))),
               onPressed: () {
-                result = convertToDouble(amountController.text);
+                result = convertToDouble(amountController.text.replaceAll(',', ''));
                 if (billerController.text.isNotEmpty &&
                     billerDetailController.text.isNotEmpty &&
                     result != null) {

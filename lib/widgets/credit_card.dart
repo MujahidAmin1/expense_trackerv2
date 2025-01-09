@@ -32,7 +32,7 @@ class _CreditCardState extends State<CreditCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-               "dayum",
+                 'datum',
                 style: TextStyle(fontSize: 30, color: Colors.white),
                 ),
               Text("Balance", style: TextStyle(fontSize: 17, color: Colors.white),),

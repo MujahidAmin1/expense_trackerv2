@@ -9,6 +9,17 @@ class Profile extends StatelessWidget {
       appBar: AppBar(
         title: const Text("My Profile"),
       ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CircleAvatar(
+            radius: 50,
+            child: Icon(Icons.person),
+          ),
+          Text("Name"),
+          
+        ],
+      ),
     );
   }
 }

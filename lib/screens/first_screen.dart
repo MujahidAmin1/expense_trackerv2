@@ -92,9 +92,8 @@ class _FirstScreenState extends State<FirstScreen> {
               sliver: SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                    final item = filteredTransactionList[index];
                     return Dismissible(
-                      key: Key(item as String),
+                      key: UniqueKey(),
                       background: Container(
                         color: Colors.red,
                         alignment: Alignment.centerRight,
