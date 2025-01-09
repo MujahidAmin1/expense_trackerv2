@@ -92,9 +92,22 @@ class _FirstScreenState extends State<FirstScreen> {
               sliver: SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
-                    return TransactionTile(
-                      transaction: filteredTransactionList[index],
-                      icon: Icons.abc,
+                    final item = filteredTransactionList[index];
+                    return Dismissible(
+                      key: Key(item as String),
+                      background: Container(
+                        color: Colors.red,
+                        alignment: Alignment.centerRight,
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: const Icon(Icons.delete, color: Colors.white),
+                      ),
+                      onDismissed: (direction) {
+                        transactionProvider.deleteTransact(index);
+                      },
+                      child: TransactionTile(
+                        transaction: filteredTransactionList[index],
+                        icon: Icons.abc,
+                      ),
                     );
                   },
                   childCount: filteredTransactionList.length,

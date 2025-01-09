@@ -8,6 +8,7 @@ class TransactionProvider extends ChangeNotifier{
   List<Transaction> _transactionList = [];
   List<Transaction> get transactionList => _transactionList;
   List<Transaction> sortedTransactions = [];
+  double? sumAmounts;
   
    TransactionProvider() {
     initializeDB();
@@ -46,7 +47,7 @@ class TransactionProvider extends ChangeNotifier{
  // Helper method to update sortedTransactions based on _transactionList
   void updateSortedTransactions() {
     sortedTransactions = List.from(_transactionList);
-    double? sumAmounts = sortedTransactions.map((amount) => amount.amount).fold(0, (sum, amount) => sum! + amount!);
+   sumAmounts = sortedTransactions.map((amount) => amount.amount).fold(0, (sum, amount) => sum! + amount!);
     notifyListeners();
   }
   
