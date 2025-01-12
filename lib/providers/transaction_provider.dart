@@ -47,7 +47,6 @@ class TransactionProvider extends ChangeNotifier{
  // Helper method to update sortedTransactions based on _transactionList
   void updateSortedTransactions() {
     sortedTransactions = List.from(_transactionList);
-   sumAmounts = sortedTransactions.map((amount) => amount.amount).fold(0, (sum, amount) => sum! + amount!);
     notifyListeners();
   }
   
