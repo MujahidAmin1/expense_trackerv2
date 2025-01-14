@@ -1,7 +1,7 @@
-import 'package:expense_trackerv2/providers/navbar_provider.dart';
-import 'package:expense_trackerv2/screens/add_card.dart';
-import 'package:expense_trackerv2/screens/add_transaction.dart';
-import 'package:expense_trackerv2/screens/profile.dart';
+import 'package:expensetrackerv2/providers/navbar_provider.dart';
+import 'package:expensetrackerv2/screens/add_card.dart';
+import 'package:expensetrackerv2/screens/add_transaction.dart';
+import 'package:expensetrackerv2/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

@@ -1,4 +1,4 @@
-import 'package:expense_trackerv2/providers/button_control.dart';
+import 'package:expensetrackerv2/providers/button_control.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

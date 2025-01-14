@@ -1,8 +1,8 @@
-import 'package:expense_trackerv2/models/transaction.dart';
-import 'package:expense_trackerv2/providers/button_control.dart';
-import 'package:expense_trackerv2/widgets/credit_card.dart';
-import 'package:expense_trackerv2/widgets/segment_tiles.dart';
-import 'package:expense_trackerv2/widgets/transaction_tile.dart';
+import 'package:expensetrackerv2/models/transaction.dart';
+import 'package:expensetrackerv2/providers/button_control.dart';
+import 'package:expensetrackerv2/widgets/credit_card.dart';
+import 'package:expensetrackerv2/widgets/segment_tiles.dart';
+import 'package:expensetrackerv2/widgets/transaction_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

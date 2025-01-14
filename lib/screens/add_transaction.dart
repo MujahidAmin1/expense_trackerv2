@@ -1,5 +1,5 @@
-import 'package:expense_trackerv2/models/transaction.dart';
-import 'package:expense_trackerv2/providers/transaction_provider.dart';
+import 'package:expensetrackerv2/models/transaction.dart';
+import 'package:expensetrackerv2/providers/transaction_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:pattern_formatter/numeric_formatter.dart';
 import 'package:provider/provider.dart';

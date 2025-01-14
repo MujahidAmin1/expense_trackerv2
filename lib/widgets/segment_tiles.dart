@@ -1,6 +1,6 @@
-import 'package:expense_trackerv2/models/transaction.dart';
-import 'package:expense_trackerv2/providers/button_control.dart';
-import 'package:expense_trackerv2/widgets/segment_btns.dart';
+import 'package:expensetrackerv2/models/transaction.dart';
+import 'package:expensetrackerv2/providers/button_control.dart';
+import 'package:expensetrackerv2/widgets/segment_btns.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +15,6 @@ class SegmentTiles extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var sbtnController = Provider.of<ButtonControl>(context);
-    var transactionProvider = Provider.of<TransactionProvider>(context);
     bool isExpenseSelected = sbtnController.isExpense!;
     return Row(
       children: [
@@ -36,9 +35,7 @@ class SegmentTiles extends StatelessWidget {
                       : Colors.white,
               child: SegmentBtn(
                 icon: Icons.arrow_upward, 
-                topTxt: 
-                       "${(transactionProvider.sortedTransactions.where((element) => element.isExpense!).length / transactionProvider.transactionList.length) * 100}%".substring(0,5),
-                        
+                topTxt: '20%', 
                 bottomTxt: 'Expense',
                 ),
             ),
@@ -62,7 +59,7 @@ class SegmentTiles extends StatelessWidget {
                       : Color(0xFFDCFFEB),
               child: SegmentBtn(
                 icon: Icons.arrow_downward, 
-                topTxt: "${(transactionProvider.sortedTransactions.where((element) => element.isExpense == false).length / transactionProvider.transactionList.length) * 100}%".substring(0,5), 
+                topTxt: '80%', 
                 bottomTxt: 'Income',
                 ),
             ),

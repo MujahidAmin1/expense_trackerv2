@@ -1,6 +1,6 @@
 {
-    "name": "expense_trackerv2",
-    "short_name": "expense_trackerv2",
+    "name": "expensetrackerv2",
+    "short_name": "expensetrackerv2",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,4 +1,4 @@
-import 'package:expense_trackerv2/models/transaction.dart';
+import 'package:expensetrackerv2/models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 
