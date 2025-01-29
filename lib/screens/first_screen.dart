@@ -1,5 +1,6 @@
 import 'package:expensetrackerv2/models/transaction.dart';
 import 'package:expensetrackerv2/providers/button_control.dart';
+import 'package:expensetrackerv2/screens/add_card.dart';
 import 'package:expensetrackerv2/widgets/credit_card.dart';
 import 'package:expensetrackerv2/widgets/segment_tiles.dart';
 import 'package:expensetrackerv2/widgets/transaction_tile.dart';
@@ -72,7 +73,38 @@ class _FirstScreenState extends State<FirstScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 10),
-                    CreditCard(),
+                    transactionProvider.creditCard == null
+                    ? GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return const AddCard();
+                            },
+                          ),
+                        );
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 201, 200, 200),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: const Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text('Add Card'),
+                            Icon(Icons.add),
+                          ],
+                        ),
+                      ),
+                    )
+                    : CreditCard(
+                      credit: transactionProvider.creditCard!,
+                    ),
                     const SizedBox(height: 30),
                     const Text(
                       "Transactions",

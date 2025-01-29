@@ -18,3 +18,18 @@ class Transaction extends HiveObject{
 
   Transaction({required this.biller, required this.billerDetail, required this.date, this.isExpense, required this.amount});
 }
+
+@HiveType(typeId: 1)
+class Credit extends HiveObject {
+  @HiveField(0)
+  String? holderName;
+  @HiveField(1)
+  double? balance = 0.0;
+  @HiveField(2)
+  String? cardNumber;
+  @HiveField(3)
+  String? expDate;
+  @HiveField(4)
+  String? cvv;
+  Credit({required this.holderName, required this.cardNumber, required this.expDate, this.balance = 0.0, required this.cvv});
+}

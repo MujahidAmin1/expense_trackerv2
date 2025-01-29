@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CreditCard extends StatefulWidget {
-  Transaction? transaction;
-  CreditCard({super.key, this.transaction});
+  Credit? credit;
+  CreditCard({super.key, this.credit});
 
   @override
   State<CreditCard> createState() => _CreditCardState();
@@ -32,14 +32,16 @@ class _CreditCardState extends State<CreditCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                 'datum',
-                style: TextStyle(fontSize: 30, color: Colors.white),
+                 '${widget.credit!.balance}',
+                style: const TextStyle(fontSize: 30, color: Colors.white),
                 ),
-              Text("Balance", style: TextStyle(fontSize: 17, color: Colors.white),),
-             SizedBox(height: 70),
+             const SizedBox(height: 70),
               Row(
                 children: [
-                  Text("4034 3344 2445 2234", style: TextStyle(fontSize: 24, color: Colors.white),),
+                  Text(
+                    '${widget.credit!.cardNumber}',
+                    style: TextStyle(fontSize: 24, color: Colors.white),
+                    ),
                   const SizedBox(width: 80),
                   SizedBox(
                     height: 26,

@@ -10,6 +10,7 @@ import 'models/transaction.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   Hive.registerAdapter(TransactionAdapter());
+  Hive.registerAdapter(CreditAdapter());
   final transactionProvider = TransactionProvider();
   await transactionProvider.initializeDB();
   

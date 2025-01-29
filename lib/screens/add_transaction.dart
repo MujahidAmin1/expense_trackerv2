@@ -36,7 +36,7 @@ class _AddTransactionState extends State<AddTransaction> {
     var transactionProvider = Provider.of<TransactionProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF7F00FF),
+        backgroundColor: const Color(0xFF291e60),
         foregroundColor: const Color(0xFF00FFFF),
         title: const Text("Add Transaction"),
         elevation: 0,
@@ -80,7 +80,7 @@ class _AddTransactionState extends State<AddTransaction> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       backgroundColor: Colors.white,
-                      selectedColor: const Color(0xFF7F00FF),
+                      selectedColor: const Color(0xFF291e60),
                     ),
                     ChoiceChip(
                       label: Text(
@@ -103,7 +103,7 @@ class _AddTransactionState extends State<AddTransaction> {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       backgroundColor: Colors.white,
-                      selectedColor: const Color(0xFF7F00FF),
+                      selectedColor: const Color(0xFF291e60),
                     ),
                   ],
                 ),
@@ -139,8 +139,13 @@ class _AddTransactionState extends State<AddTransaction> {
             ),
             const SizedBox(height: 25),
             ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(const Color(0xFF7F00FF))),
+              style: ElevatedButton.styleFrom(
+                minimumSize: const Size(400, 54),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8)
+                ),
+                backgroundColor: const Color(0xFF291e60)
+              ),
               onPressed: () {
                 result = convertToDouble(amountController.text.replaceAll(',', ''));
                 if (billerController.text.isNotEmpty &&

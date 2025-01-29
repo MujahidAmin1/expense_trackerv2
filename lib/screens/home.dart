@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'first_screen.dart';
-import 'statistics.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,8 +17,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List<Widget> navbarItems = [
     const FirstScreen(),
-    const Statistics(),
-    const AddCard(),
     const Profile(),
   ];
   @override
@@ -57,27 +54,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   : Colors.grey,
               onPressed: () => navBarProvider.changeIndex(0),
             ),
+            const SizedBox(width: 40),
             IconButton(
-              icon: const Icon(Icons.bar_chart),
+              icon: const Icon(Icons.person),
               color: navBarProvider.selectedIndex == 1
                   ? Theme.of(context).colorScheme.primary
                   : Colors.grey,
               onPressed: () => navBarProvider.changeIndex(1),
-            ),
-            const SizedBox(width: 40), // Space for FAB cutout
-            IconButton(
-              icon: const Icon(Icons.credit_card),
-              color: navBarProvider.selectedIndex == 2
-                  ? Theme.of(context).colorScheme.primary
-                  : Colors.grey,
-              onPressed: () => navBarProvider.changeIndex(2),
-            ),
-            IconButton(
-              icon: const Icon(Icons.person),
-              color: navBarProvider.selectedIndex == 3
-                  ? Theme.of(context).colorScheme.primary
-                  : Colors.grey,
-              onPressed: () => navBarProvider.changeIndex(3),
             ),
           ],
         ),
