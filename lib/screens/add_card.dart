@@ -1,7 +1,10 @@
 import 'package:expensetrackerv2/models/transaction.dart';
 import 'package:expensetrackerv2/providers/transaction_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:pattern_formatter/numeric_formatter.dart';
 import 'package:provider/provider.dart';
+import '../widgets/monthyear_formatter.dart';
 
 class AddCard extends StatefulWidget {
   const AddCard({super.key});
@@ -14,17 +17,22 @@ TextEditingController? cardNumberController;
 TextEditingController? holderNameController;
 TextEditingController? cvvController;
 TextEditingController? expDateController;
+TextEditingController? balanceController;
 
 class _AddCardState extends State<AddCard> {
+  double? balance;
   @override
   void initState() {
     cardNumberController = TextEditingController();
     holderNameController = TextEditingController();
     cvvController = TextEditingController();
     expDateController = TextEditingController();
+    balanceController = TextEditingController();
     super.initState();
   }
-
+  double? convToDouble(String text){
+     return double.tryParse(text);
+  }
   @override
   Widget build(BuildContext context) {
     var creditProvider = Provider.of<TransactionProvider>(context);
@@ -38,6 +46,9 @@ class _AddCardState extends State<AddCard> {
           children: [
             const SizedBox(height: 20),
             TextField(
+              inputFormatters: [
+                CreditCardFormatter(),
+              ],
               controller: cardNumberController,
               decoration: const InputDecoration(
                 labelText: 'Card Number',
@@ -50,6 +61,10 @@ class _AddCardState extends State<AddCard> {
               children: [
                 Flexible(
                   child: TextField(
+                    inputFormatters: [
+                      MonthYearInputFormatter(),
+                    ],
+                    keyboardType: TextInputType.number,
                     controller: expDateController,
                     decoration: const InputDecoration(
                       labelText: 'Exp. Date',
@@ -61,6 +76,7 @@ class _AddCardState extends State<AddCard> {
                 const SizedBox(width: 15),
                 Flexible(
                   child: TextField(
+                    keyboardType: TextInputType.number,
                     controller: cvvController,
                     decoration: const InputDecoration(
                       labelText: 'CVV',
@@ -81,13 +97,25 @@ class _AddCardState extends State<AddCard> {
               ),
             ),
             const SizedBox(height: 20),
+            TextField(
+              keyboardType: TextInputType.number,
+              controller: balanceController,
+              decoration: const InputDecoration(
+                labelText: 'Your Card Balance',
+                hintText: '123...',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
+                balance = convToDouble(balanceController!.text);
                 final credit = Credit(
                   holderName: holderNameController!.text,
                   cardNumber: cardNumberController!.text,
                   expDate: expDateController!.text,
                   cvv: cvvController!.text,
+                  balance: balance,
                 );
                 creditProvider.createCard(credit);
               },

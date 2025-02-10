@@ -31,5 +31,5 @@ class Credit extends HiveObject {
   String? expDate;
   @HiveField(4)
   String? cvv;
-  Credit({required this.holderName, required this.cardNumber, required this.expDate, this.balance = 0.0, required this.cvv});
+  Credit({this.holderName, this.cardNumber, this.expDate, this.balance = 0.0,this.cvv});
 }

@@ -102,8 +102,35 @@ class _FirstScreenState extends State<FirstScreen> {
                         ),
                       ),
                     )
-                    : CreditCard(
-                      credit: transactionProvider.creditCard!,
+                    : GestureDetector(
+                      onLongPress: (){
+                        showDialog(
+                          context: context,
+                           builder: (context){
+                            return AlertDialog(
+                              content: Column(
+                                children: [
+                                  Text("Are you sure you want to delete?"),
+                                  Row(
+                                    children: [
+                                      TextButton(
+                                        onPressed: (){
+                                          transactionProvider.deleteCard();
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text("Yes"),
+                                        )
+                                    ],
+                                  )
+                                ],
+                              )
+                            );
+                           }
+                           );
+                      },
+                      child: CreditCard(
+                        credit: transactionProvider.creditCard,
+                      ),
                     ),
                     const SizedBox(height: 30),
                     const Text(

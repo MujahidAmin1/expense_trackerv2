@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         shape: CircleBorder(),
         backgroundColor: const Color(0xFF291e60),
-        child: const Icon(Icons.add, color: Colors.white,),
+        child: const Icon(Icons.add, color: Color.fromARGB(255, 172, 158, 158),),
         onPressed: () {
           Navigator.push(
             context,
