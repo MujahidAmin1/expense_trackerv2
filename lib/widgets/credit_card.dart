@@ -14,7 +14,6 @@ class CreditCard extends StatefulWidget {
 class _CreditCardState extends State<CreditCard> {
   @override
   Widget build(BuildContext context){
-    var transactionProvider = Provider.of<TransactionProvider>(context);
     return Card(
       color: const Color(0xFF291e60),
       elevation: 3,
@@ -27,7 +26,7 @@ class _CreditCardState extends State<CreditCard> {
         ),
         height: 213,
         child: Padding(
-          padding: EdgeInsets.all(30.0),
+          padding: EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -35,20 +34,24 @@ class _CreditCardState extends State<CreditCard> {
                  '${widget.credit!.balance}',
                 style: const TextStyle(fontSize: 30, color: Colors.white),
                 ),
-             const SizedBox(height: 70),
+             const SizedBox(height: 80),
               Row(
                 children: [
                   Text(
                     '${widget.credit!.cardNumber}',
                     style: TextStyle(fontSize: 24, color: Colors.white),
                     ),
-                  const SizedBox(width: 80),
+                  const SizedBox(width: 120),
                   SizedBox(
                     height: 26,
                     child: Image.asset('assets/mcard.png'),
                     ),
                 ],
               ),
+              Text(
+                widget.credit!.holderName!.toUpperCase(),
+                style: const TextStyle(color: Colors.white, fontSize: 25),
+              )
             ],
           ),
         ),

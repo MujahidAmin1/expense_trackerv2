@@ -17,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List<Widget> navbarItems = [
     const FirstScreen(),
-    const Profile(),
+    Profile(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         shape: CircleBorder(),
         backgroundColor: const Color(0xFF291e60),
-        child: const Icon(Icons.add, color: Color.fromARGB(255, 172, 158, 158),),
+        child: const Icon(Icons.add, color: Colors.white),
         onPressed: () {
           Navigator.push(
             context,
@@ -41,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
+        color: Colors.white38,
         shape: const CircularNotchedRectangle(),
         notchMargin: 8.0,
         clipBehavior: Clip.antiAlias,

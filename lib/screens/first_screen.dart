@@ -108,21 +108,35 @@ class _FirstScreenState extends State<FirstScreen> {
                           context: context,
                            builder: (context){
                             return AlertDialog(
-                              content: Column(
-                                children: [
-                                  Text("Are you sure you want to delete?"),
-                                  Row(
-                                    children: [
-                                      TextButton(
-                                        onPressed: (){
-                                          transactionProvider.deleteCard();
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text("Yes"),
-                                        )
-                                    ],
-                                  )
-                                ],
+                              title: const Text("Delete Card"),
+                              content: Container(
+                                height: 125,
+                                width: 410,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text('Are you sure you want to delete this card?'),
+                                    const SizedBox(height: 60),
+                                    Row(
+                                      children: [
+                                        const SizedBox(width: 160),
+                                        TextButton(
+                                          onPressed: (){
+                                            transactionProvider.deleteCard();
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text("Yes"),
+                                          ),
+                                          TextButton(
+                                          onPressed: (){ 
+                                            Navigator.pop(context);
+                                          },
+                                          child: const Text("No"),
+                                          ),
+                                      ],
+                                    )
+                                  ],
+                                ),
                               )
                             );
                            }

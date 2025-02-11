@@ -118,6 +118,7 @@ class _AddCardState extends State<AddCard> {
                   balance: balance,
                 );
                 creditProvider.createCard(credit);
+                Navigator.pop(context);
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(400, 50),
